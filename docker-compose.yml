@@ -1,0 +1,30 @@
+version: '3'
+# @see https://docs.docker.com/compose/compose-file/compose-file-v2/
+services:
+  web:
+    build:
+      context: _docker
+      dockerfile: php.Dockerfile
+    ports:
+      - "8006:80"
+    volumes:
+      - .:/var/www/html/
+      - ./_docker/webserver/php.ini:/usr/local/etc/php/php.ini
+      - ./_docker/webserver/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./_docker/webserver/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
+    tty: true
+    stdin_open: true
+    environment:
+      AMBIENTE: docker
+
+  db:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: taskapp
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 1234
