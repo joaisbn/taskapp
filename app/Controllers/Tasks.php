@@ -6,6 +6,10 @@ class Tasks extends BaseController
 {
     public function index(): string
     {
-        return view('Tasks/index');
+        $taskModel = new \App\Models\TaskModel();
+
+        $data['tasks'] = $taskModel->findAll();
+
+        return view('Tasks/index', $data);
     }
 }
