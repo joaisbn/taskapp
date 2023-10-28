@@ -13,7 +13,7 @@ class TaskModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['description'];
 
     // Dates
     protected $useTimestamps = false;
@@ -23,8 +23,14 @@ class TaskModel extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = [];
-    protected $validationMessages   = [];
+    protected $validationRules      = [
+        'description' => 'required'
+    ];
+    protected $validationMessages   = [
+        'description' => [
+            'required' => 'Please enter a description'
+        ]
+    ];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;
 
