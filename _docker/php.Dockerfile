@@ -1,4 +1,5 @@
-FROM php:7.4.6-apache
+# FROM php:7.4.6-apache
+FROM php:8.1.2-apache
 
 LABEL maintainer="alexandre.trindade@uerj.br,fernando.ribeiro@uerj.br"
 
